@@ -14,9 +14,9 @@ $data .= " {\n";
 $data .= "GRAPH  g10:   {\n";
 $data .= "	?node10 nys:amount ?amount .\n";
 
-$data .= '	?node10 nys:office ?senator FILTER regex(?senator, "SENATOR ';
+$data .= '	?node10 nys:office ?senator  FILTER (?senator= "SENATOR ';
 
-$data .= strtoupper($_GET["name"]);
+$data .= strtoupper(urldecode($_GET["name"]));
 
 $data .= "\").\n";
  
@@ -25,16 +25,16 @@ $data .= "	}\n";
 $data .= " }UNION{\n";
 $data .= " GRAPH g09:	{\n";
 $data .= "	?node09 nys:amount ?amount .\n";
-$data .= '	?node09 nys:office ?senator FILTER regex(?senator, "SENATOR ';
-$data .= strtoupper($_GET["name"]);
+$data .= '	?node09 nys:office ?senator  FILTER (?senator= "SENATOR ';
+$data .= strtoupper(urldecode($_GET["name"]));
 $data .= "\").\n";
 $data .= "	?node09 nys:expense_type ?type .\n";
 $data .= "	}\n";
 $data .= " }\n";
 $data .= "}\n";
 
-echo $data;
- 
+print $data;
+
 /*$fh = fopen($filename, "w");
 fwrite($fh, $data);*/
 

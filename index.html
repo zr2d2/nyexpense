@@ -11,9 +11,16 @@
 
       function drawVisualization() {
         var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
-
+	var select = document.forms["senator_form"]["senator_select"];
+	var url = window.location.toString();
+	if(url.indexOf("?senator=") < 0)
+		return;
+	var senator = decodeURIComponent(url.replace("http://cgi2.cs.rpi.edu/~souzad/ny/","").replace("index.html","").replace("?senator=","").replace("+"," ").replace(".+", ". "));
+	alert(senator);
+	//var senator = select.options[select.selectedindex].value;
         // Replace the data source URL on next line with your data source URL.
-         var queryloc = "http://cgi2.cs.rpi.edu/~souzad/thomas_k_duane.sparql" ;
+         var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/createsparql?name=" + encodeURIComponent(senator) ;
+	alert(queryloc);
          var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
          var query = new google.visualization.Query(queryurl);
 
@@ -53,8 +60,9 @@
 	}
 	for (var i = 0; i < rows; i++ ){
 	  var column = data.getValue(i,3);
-	  if(data.getValue(i,0) != null)
+	  if(data.getValue(i,0) != null) {
 	    values [0] [indexOf(columns,column)] += data.getValue(i,4);
+	}
 	  else
 	    values [1] [indexOf(columns,column)] += data.getValue(i,4);
 	  }
@@ -67,7 +75,7 @@
 	  for (var i = 0; i < columns.length; i++ ){
 	    newdata.setValue(i,0, columns[i].replace("http://logd.tw.rpi.edu/source/nysenate-gov/dataset/expenditure/value-of/expense_type/","").replace("_", " "));
 	    for(var j = 0; j < 2; j++){
-	      newdata.setValue(i, j+1, values[j][i]);
+	      newdata.setValue(i, j+1, parseFloat(values[j][i].toFixed(2)));
 	    }
 	  }
 	  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
@@ -78,32 +86,31 @@
 	var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
 
 	// Replace the data source URL on next line with your data source URL.
-	var queryloc = "http://rowez.myrpi.org/rowez/nydata/senators.sparql" ;
+	var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/senators.sparql" ;
 	var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
 	var query = new google.visualization.Query(queryurl);
-
 	// Send the query with a callback function.
 	query.send(processDataTable);
       };
 
       function processDataTable(response) {
-	var data = response.getDataTable();
-	var senators = new array();
+	var data= response.getDataTable();
+	var senators = new Array();
 	for (var i = 0; i < data.getNumberOfRows(); i++) {
 	  senators[i] = data.getValue(i, 0);
 	}
-	var select = $("#senator_select").val();
-	var  options = "";
+	var select = document.forms["senator_form"]["senator_select"];
 	var  rows= senators.length;
-	var index = -1;
-
 	for (var i = 0; i < rows; i++ ){
 	  var value = senators[i] ;
-	  var text = senators[i]
+	  var text = senators[i];
 	  var element = document.createElement("option");
 	  element.setAttribute("value",value);
 	  element.innerHTML = text;
+	  select.options[i]=new Option(senators[i], senators[i].replace("SENATOR ",""), true, false);
+	  
 	}
+
       }
 
       function onchange_senator(){
