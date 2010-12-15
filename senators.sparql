@@ -1,0 +1,15 @@
+PREFIX nys: <http://logd.tw.rpi.edu/source/nysenate-gov/dataset/expenditure/vocab/enhancement/1/>
+PREFIX g09: <http://logd.tw.rpi.edu/source/nysenate-gov/dataset/expenditure/version/2009-09-30>
+PREFIX g10: <http://logd.tw.rpi.edu/source/nysenate-gov/dataset/expenditure/version/2010-03-31>
+SELECT DISTINCT ?senator
+WHERE{
+ {
+GRAPH  g10:   {
+	?node10 nys:office ?senator FILTER regex(?senator, "SENATOR *").
+	}
+ }UNION{
+ GRAPH g09:	{
+	?node09 nys:office ?senator FILTER regex(?senator, "SENATOR *").
+	}
+ }
+}
