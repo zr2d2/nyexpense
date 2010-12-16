@@ -3,6 +3,7 @@
 <head> 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <title>State Senate Expendatures</title> 
+  <link type="text/css" rel="stylesheet" media="screen" href="http://rowez.myrpi.org/rowez/safety/stylesheets/scaffold.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script> 
   <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
   <script type="text/javascript"> 
@@ -13,9 +14,9 @@
       var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
       var select = document.forms["senator_form"]["senator_select"];
       var url = window.location.toString();
-      //alert(senator);
+
       // Replace the data source URL on next line with your data source URL.
-      var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/createsparql?name=" + encodeURIComponent(senator) ;
+      var queryloc = "http://rowez.myrpi.org/rowez/nyexpense/createsparql?name=" + encodeURIComponent(senator) ;
       var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
       var query = new google.visualization.Query(queryurl);
 
@@ -81,7 +82,7 @@
 	var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
 
 	// Replace the data source URL on next line with your data source URL.
-	var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/senators.sparql" ;
+	var queryloc = "http://rowez.myrpi.org/rowez/nyexpense/senators.sparql" ;
 	var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
 	var query = new google.visualization.Query(queryurl);
 
@@ -97,7 +98,8 @@
 	}
 	var select = document.forms["senator_form"]["senator_select"];
 	var  rows= senators.length;
-	for (var i = 0; i < rows; i++ ){
+	select.options[0]=new Option("Select a Senator...", "none", true, false);
+	for (var i = 1; i < rows; i++ ){
 	  var value = senators[i] ;
 	  var text = senators[i];
 	  var element = document.createElement("option");
@@ -115,8 +117,8 @@
 	var query = $('#senator_select').val();
 	query = query.replace('SENATOR ','');
 	drawVisualization(query);
-	alert(query);
-	$('#feeds').load('nyt.php?query='+encodeURIComponent(query));
+	$('#NYT').load('nyt.php?query='+encodeURIComponent(query));
+        $('#Twitter').load('twitter.php?query='+encodeURIComponent(query));
       });
     });
   </script>
@@ -125,16 +127,18 @@
   <div id="wrap">
     <div id="wrap-padding">
       <div class="main-title">
-        <div style="text-align:left; width: 1100px">
-          <form id="senator_form" action ="" >
-	    Senator
-	    <select name="senator" id="senator_select"><option disabled>Select a senator...</option></select>
-	  </form>
-	</div> 
+	NY Senate Expenses By Senator
+        <form id="senator_form" action ="" >
+	  <select name="senator" id="senator_select"><option disabled>Select a senator...</option></select>
+	</form>
 	<div id="chart_div" style=" height: 500px;"></div>
-	<div name="feeds" id="feeds">
-	  <?php include 'nyt.php'; ?>
-	</div>
+      </div>
+      <div class="hr_dl flush"><img alt="" src="http://rowez.myrpi.org/rowez/safety/images/bl.png" /></div> 
+      <div class="mc-indent">
+        <h2>Related Stories from the New York Times</h2>
+	<div name="NYT" id="NYT" class="mc-indent" style="padding: 0;"></div>
+        <h2>Related Tweets</h2>
+        <div name="Twitter" id="Twitter" class="mc-indent" style="padding: 0;"></div>
       </div>
     </div>
   </div>
