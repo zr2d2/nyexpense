@@ -5,11 +5,11 @@ SELECT DISTINCT ?senator
 WHERE{
  {
 GRAPH  g10:   {
-	?node10 nys:office ?senator FILTER regex(?senator, "SENATOR *").
+	?node10 nys:office ?senator FILTER regex(?senator, "^SENATOR *").
 	}
  }UNION{
  GRAPH g09:	{
-	?node09 nys:office ?senator FILTER regex(?senator, "SENATOR *").
+	?node09 nys:office ?senator FILTER regex(?senator, "^SENATOR *").
 	}
  }
 }
