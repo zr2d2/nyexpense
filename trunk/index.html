@@ -1,41 +1,36 @@
 <!DOCTYPE html> 
 <html> 
-  <head> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <title>State Senate Expendatures</title> 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script> 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
-    <script type="text/javascript"> 
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawVisualization);
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>State Senate Expendatures</title> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script> 
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
+  <script type="text/javascript"> 
+    google.load("visualization", "1", {packages:["columnchart,table,piechart,annotatedtimeline"]});
+    google.setOnLoadCallback(drawVisualization);
 
-      function drawVisualization() {
-        var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
-	var select = document.forms["senator_form"]["senator_select"];
-	var url = window.location.toString();
-	if(url.indexOf("?senator=") < 0)
-		return;
-	var senator = decodeURIComponent(url.replace("http://cgi2.cs.rpi.edu/~souzad/ny/","").replace("index.html","").replace("?senator=","").replace("+"," ").replace(".+", ". "));
-	alert(senator);
-	//var senator = select.options[select.selectedindex].value;
-        // Replace the data source URL on next line with your data source URL.
-         var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/createsparql?name=" + encodeURIComponent(senator) ;
-	alert(queryloc);
-         var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
-         var query = new google.visualization.Query(queryurl);
+    function drawVisualization(senator) {
+      var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
+      var select = document.forms["senator_form"]["senator_select"];
+      var url = window.location.toString();
+      //alert(senator);
+      // Replace the data source URL on next line with your data source URL.
+      var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/createsparql?name=" + encodeURIComponent(senator) ;
+      var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
+      var query = new google.visualization.Query(queryurl);
 
-        // Send the query with a callback function.
-        query.send(handleQueryResponse);
-      };
+      // Send the query with a callback function.
+      query.send(handleQueryResponse);
+    };
 
-      function indexOf(array, obj){
-	for(var i=0; i<array.length; i++){
-	  if(array[i]==obj){
-	    return i;
-	  }
+    function indexOf(array, obj){
+      for(var i=0; i<array.length; i++){
+	if(array[i]==obj){
+	  return i;
 	}
-	return -1;
       }
+      return -1;
+    }
 
       function handleQueryResponse(response) {
         if (response.isError()) {
@@ -81,14 +76,15 @@
 	  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
 	  chart.draw(newdata, {width: 800, height: 480, title: 'Spending', hAxis: {title: 'Type of Expense', titleTextStyle: {color: 'red'}}});
 	}
-	function popselect() {
 
+      function popselect() {
 	var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
 
 	// Replace the data source URL on next line with your data source URL.
 	var queryloc = "http://cgi2.cs.rpi.edu/~souzad/ny/senators.sparql" ;
 	var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
 	var query = new google.visualization.Query(queryurl);
+
 	// Send the query with a callback function.
 	query.send(processDataTable);
       };
@@ -110,27 +106,37 @@
 	  select.options[i]=new Option(senators[i], senators[i].replace("SENATOR ",""), true, false);
 	  
 	}
-
       }
 
-      function onchange_senator(){
-	document.forms["senator_form"].submit();
-      }
-    </script>
-  </head>
-  <body onLoad = popselect()>
-    <div id="wrap">
-      <div id="wrap-padding">
-	<div class="main-title">
-	  <div style="text-align:left; width: 1100px">
-	    <form id="senator_form" action ="" >
-	      Senator
-	      <select name="senator" id="senator_select" onchange="onchange_senator()"></select>
-	    </form>
-	  </div>
-	  <div id="chart_div" style=" height: 500px;"></div>
+    $(document).ready(function() {
+
+      //if select value is changed
+      $('#senator_select').change(function() {
+	var query = $('#senator_select').val();
+	query = query.replace('SENATOR ','');
+	drawVisualization(query);
+	alert(query);
+	$('#feeds').load('nyt.php?query='+encodeURIComponent(query));
+      });
+    });
+  </script>
+</head>
+<body onLoad = popselect()>
+  <div id="wrap">
+    <div id="wrap-padding">
+      <div class="main-title">
+        <div style="text-align:left; width: 1100px">
+          <form id="senator_form" action ="" >
+	    Senator
+	    <select name="senator" id="senator_select"><option disabled>Select a senator...</option></select>
+	  </form>
+	</div> 
+	<div id="chart_div" style=" height: 500px;"></div>
+	<div name="feeds" id="feeds">
+	  <?php include 'nyt.php'; ?>
 	</div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>

@@ -10,7 +10,7 @@ echo 'Query: ' . $query . '<br>';
 
 if (!empty($query)) {
 
-$geocode=file_get_contents('http://api.nytimes.com/svc/search/v1/article?query=' . $query . '&api-key=13a26276609744cc626e399a4ec39753:11:61727267');
+$geocode=file_get_contents('http://api.nytimes.com/svc/search/v1/article?query=' . urlencode($query) . '&api-key=13a26276609744cc626e399a4ec39753:11:61727267');
 
 $output= json_decode($geocode);
 
