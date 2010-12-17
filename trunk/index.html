@@ -75,7 +75,7 @@
 	    }
 	  }
 	  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-	  chart.draw(newdata, {width: 800, height: 480, title: 'Spending', hAxis: {title: 'Type of Expense', titleTextStyle: {color: 'red'}}});
+	  chart.draw(newdata, {width: 800, height: 500, title: 'Spending', hAxis: {title: 'Type of Expense', titleTextStyle: {color: 'red'}}, vAxis: {title: 'Amount (Dollars)', titleTextStyle: {color: 'red'}}});
 	}
 
       function popselect() {
@@ -135,9 +135,7 @@
       </div>
       <div class="hr_dl flush"><img alt="" src="http://rowez.myrpi.org/rowez/safety/images/bl.png" /></div> 
       <div class="mc-indent">
-        <h2>Related Stories from the New York Times</h2>
 	<div name="NYT" id="NYT" class="mc-indent" style="padding: 0;"></div>
-        <h2>Related Tweets</h2>
         <div name="Twitter" id="Twitter" class="mc-indent" style="padding: 0;"></div>
       </div>
     </div>
