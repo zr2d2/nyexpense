@@ -6,19 +6,18 @@
   <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
 html { font-family:"Myriad Web", Myriad, Arial, sans-serif; }
-body { background:url("http://rowez.myrpi.org/rowez/safety/images/customized/woodplanks.jpg") repeat scroll left top #FFFFFF }
 #wrap { width:70%; margin:80px auto; margin-bottom:8px; min-width:940px; 
 background:#f5f5f5 
-url(http://rowez.myrpi.org/rowez/safety/images/layout/wrap_bg.png) top 
+url(http://logd.tw.rpi.edu/files/wrap_bg.png) top 
 left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; 
 -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; 
 -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; 
 -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
 div.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; padding-right:34px; 
-background:url(http://rowez.myrpi.org/rowez/safety/images/layout/h1block.png) 
+background:url(http://logd.tw.rpi.edu/files/h1block.png) 
 top left no-repeat; font-size:2.2em; font-weight:600; color:#333; }
-div.hr_dl { background:url(http://rowez.myrpi.org/rowez/safety/images/layout/hr_dl.png) top left repeat-x; height:2px; }
+div.hr_dl { background:url(http://logd.tw.rpi.edu/files/hr_dl.png) top left repeat-x; height:2px; }
 div.flush { margin-left:-20px; margin-right:-20px; }
 #chart_div{  font-weight:normal; font-size:0.45em; }
   </style>
@@ -100,7 +99,7 @@ div.flush { margin-left:-20px; margin-right:-20px; }
 	var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
 
 	// Replace the data source URL on next line with your data source URL.
-	var queryloc = "http://logd.tw.rpi.edu/files/senators_2.sparql";
+	var queryloc = "http://logd.tw.rpi.edu/files/senators_3.sparql";
 	var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc);
 	var query = new google.visualization.Query(queryurl);
 
@@ -134,25 +133,26 @@ div.flush { margin-left:-20px; margin-right:-20px; }
       //if select value is changed
       $('#senator_select').change(function() {
 	var query = $('#senator_select').val();
+        
 	query = query.replace('SENATOR ','');
 	drawVisualization(query);
-	$('#NYT').load('nyt.php?query='+encodeURIComponent(query));
-        $('#Twitter').load('twitter.php?query='+encodeURIComponent(query));
+	$('#NYT').load('http://logd.tw.rpi.edu/query/web-sci/nyt.php?query='+encodeURIComponent(query));
+	$('#Twitter').load('http://logd.tw.rpi.edu/query/web-sci/twitter.php?query='+encodeURIComponent(query));
       });
     });
   </script>
-</head>
+ </head>
 <body onLoad = popselect()>
   <div id="wrap">
     <div id="wrap-padding">
       <div class="main-title">
 	NY Senate Expenses By Senator
         <form id="senator_form" action ="" >
-	  <select name="senator" id="senator_select"><option disabled>Select a senator...</option></select>
+	  <select name="senator" id="senator_select"></select>
 	</form>
 	<div id="chart_div" style=" height: 500px;"></div>
       </div>
-      <div class="hr_dl flush"><img alt="" src="http://rowez.myrpi.org/rowez/safety/images/bl.png" /></div> 
+      <div class="hr_dl flush"><img alt="" src="http://logd.tw.rpi.edu/files/bl.png" /></div> 
       <div class="mc-indent">
 	<div name="NYT" id="NYT" class="mc-indent" style="padding: 0;"></div>
         <div name="Twitter" id="Twitter" class="mc-indent" style="padding: 0;"></div>
