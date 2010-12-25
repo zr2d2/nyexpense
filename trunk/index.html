@@ -22,7 +22,7 @@ div.flush { margin-left:-20px; margin-right:-20px; }
   <script src="jquery.twitter.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script> 
   <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
-  <script language="javascript" src="/tweet/jquery.tweet.js" type="text/javascript"></script>
+  <script language="javascript" src="jquery.tweet.js" type="text/javascript"></script>
   <script type="text/javascript"> 
     google.load("visualization", "1", {packages:["columnchart,table,piechart,annotatedtimeline"]});
     google.setOnLoadCallback(drawVisualization);
@@ -33,7 +33,7 @@ div.flush { margin-left:-20px; margin-right:-20px; }
       var url = window.location.toString();
 
       // Replace the data source URL on next line with your data source URL.
-      var queryloc = "http://logd.tw.rpi.edu/query/web-sci/createsparql.php?name=" + encodeURIComponent(senator) ;
+      var queryloc = "createsparql.php?name=" + encodeURIComponent(senator) ;
       var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc) ;
       var query = new google.visualization.Query(queryurl);
 
@@ -92,14 +92,14 @@ div.flush { margin-left:-20px; margin-right:-20px; }
 	    }
 	  }
 	  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-	  chart.draw(newdata, {width: 800, height: 500, title: 'Spending', hAxis: {title: 'Type of Expense', titleTextStyle: {color: 'red'}}, vAxis: {title: 'Amount (Dollars)', titleTextStyle: {color: 'red'}}});
+	  chart.draw(newdata, {width: 800, height: 500, title: 'Spending By', hAxis: {title: 'Type of Expense', titleTextStyle: {color: 'red'}}, vAxis: {title: 'Amount (Dollars)', titleTextStyle: {color: 'red'}}});
 	}
 
       function popselect() {
 	var  sparqlproxy = "http://logd.tw.rpi.edu/sparql?";
 
 	// Replace the data source URL on next line with your data source URL.
-	var queryloc = "http://logd.tw.rpi.edu/files/senators_3.sparql";
+	var queryloc = "senators.sparql";
 	var queryurl = sparqlproxy + "output=gvds" + "&query-uri=" + encodeURIComponent(queryloc);
 	var query = new google.visualization.Query(queryurl);
 
@@ -128,6 +128,7 @@ div.flush { margin-left:-20px; margin-right:-20px; }
       }
 
       function twitter(query) {
+        $("#twitter").empty();
 	$("#twitter").getTwitter({
 	  userName: query,
 	  numTweets: 5,
