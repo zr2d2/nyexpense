@@ -1,0 +1,47 @@
+/* Flagship Docs (v2) - CSS */
+/* Designed and Built by the Web Technologies Group of RPI from 2009 to 2010. */
+
+/*##########################################################################*/
+/*	GLOBAL CSS  */
+/*##########################################################################*/
+
+/*##########################################################################*/
+/*  General Styles  */
+/*##########################################################################*/
+
+/*##########  GLOBAL RESET AND MASTER TAGS  ##########*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
+html { font-family:"Myriad Web", Myriad, Arial, sans-serif; }
+body { background:#FFFFFF url(woodplanks.jpg) repeat scroll left top; }
+
+/*##########  MAIN HEADERS  ##########*/
+h1.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; background:url(h1block.png) top left no-repeat; font-size:2.2em; font-weight:600; color:#333; }
+h1.main-title span { color:#666; font-weight:normal; font-size:0.45em; padding:0px; margin:0px; margin-top:4px; display:block; }
+div.mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 12px 0px; padding:20px 0px 0px 0px; }
+div.mc-indent { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 12px 0px; padding:0px; }
+
+/*##########  INDENTS AND PADDING  ##########*/
+div.flush { margin-left:-20px; margin-right:-20px; }
+
+/*##########  HORIZONTAL RULE  ##########*/
+div.hr_dl { background:url(hr_dl.png) top left repeat-x; height:2px; }
+
+/*##########  WRAP  ##########*/
+#wrap { width:70%; margin:80px auto; margin-bottom:8px; min-width:940px; background:#f5f5f5 url(wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
+#wrap-padding { padding:40px 20px; padding-bottom:50px; }
+
+/*##########  Twitter box, from SeaOfCloads Tweet (github.com/seaofclouds/tweet)  ##########*/
+.tweet { font-family: Georgia, serif; font-size: 120%; color: #085258; }
+.tweet .tweet_list { font-size:0.9em; list-style-type: none; margin: 0; padding: 0; }
+.tweet .tweet_list .awesome, .tweet .tweet_list .epic { text-transform: uppercase; }
+.tweet .tweet_list li {font-size:1.06em; vertical-align:center; padding:3px 9px; margin:0; overflow-y: auto; overflow-x: hidden; border:solid 1px #999; text-align:left;}
+.tweet .tweet_list li a { font-size:small; text-align:right; color: #0C717A; text-decoration:none; }
+.tweet .tweet_list li a:hover { text-decoration:underline; }
+.tweet .tweet_list span { display: block; }
+.tweet .tweet_list .tweet_first { -moz-border-radius: 12px 12px 0 0; -webkit-border-radius: 12px 12px 0 0; -border-radius: 12px 12px 0 0; background: #605B5B; color: #ffffff; padding:6px 10px; letter-spacing:0.25em; font-size:0.65em; text-transform:uppercase; border:0px; }
+.tweet .tweet_list .tweet_even { background:#ffffff url(docs_even_bg.png) top left repeat-x; }
+.tweet .tweet_list .tweet_odd { background:#e5e5e5 url(docs_odd_bg.png) top left repeat-x; }
+.tweet .tweet_list .tweet_last { -moz-border-radius: 0 0 12px 12px; -webkit-border-radius: 0 0 12px 12px; -border-radius: 0 0 12px 12px; }
+.tweet .tweet_list .tweet_avatar { float: left; padding-right: .5em; }
+.tweet .tweet_list .tweet_avatar img { vertical-align: middle; text-align: center; }
+
