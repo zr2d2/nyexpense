@@ -8,8 +8,9 @@
       $output= json_decode($geocode);
     }
     echo '<h2>Related Stories from the New York Times</h2>';
+    echo '<ul class="tweet_list">';
     for ( $counter = 0; $counter <= 5; $counter += 1) {
-      echo '<b> <a href="' . $output->results[$counter]->url . '" target="_blank">' . $output->results[$counter]->title . '<a/> (' . date('F jS, Y', strtotime($output->results[$counter]->date)) . ')</b><br>';
+      echo '<li class="tweet_first"> <a href="' . $output->results[$counter]->url . '" target="_blank">' . $output->results[$counter]->title . '<a/> (' . date('F jS, Y', strtotime($output->results[$counter]->date)) . ')</li>';
       echo $output->results[$counter]->body . '... <a href="' . $output->results[$counter]->url . '" target="_blank">read more</a><br><br>';
     }
   }
