@@ -1,25 +1,27 @@
-.tweet, .query {
-  font-family: Georgia, serif;
-  font-size: 120%;
-  color: #085258; }
-  .tweet .tweet_list, .query .tweet_list {
-    -webkit-border-radius: .5em;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #8ADEE2; }
-    .tweet .tweet_list .awesome, .tweet .tweet_list .epic, .query .tweet_list .awesome, .query .tweet_list .epic {
-      text-transform: uppercase; }
-    .tweet .tweet_list li, .query .tweet_list li {
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: .5em; }
-      .tweet .tweet_list li a, .query .tweet_list li a {
-        color: #0C717A; }
-    .tweet .tweet_list .tweet_even, .query .tweet_list .tweet_even {
-      background-color: #91E5E7; }
-    .tweet .tweet_list .tweet_avatar, .query .tweet_list .tweet_avatar {
-      padding-right: .5em;
-      float: left; }
-      .tweet .tweet_list .tweet_avatar img, .query .tweet_list .tweet_avatar img {
-        vertical-align: middle; }
+.tweet, .query { font-family: Georgia, serif; font-size: 120%; color: #085258; }
+.tweet .tweet_list, .query .tweet_list { font-size:0.9em; list-style-type: none; margin: 0; padding: 0; }
+.tweet .tweet_list .awesome, .tweet .tweet_list .epic, .query .tweet_list .awesome, .query .tweet_list .epic { text-transform: uppercase; }
+.tweet .tweet_list li, .query .tweet_list li {font-size:1.06em; height:35px; vertical-align:center; padding:3px 9px; margin:0; overflow-y: auto; overflow-x: hidden; border:solid 1px #999;}
+.tweet .tweet_list li a, .query .tweet_list li a { width:180px; height:210px; font-size:small; text-align:right; color: #0C717A; text-decoration:none; }
+.tweet .tweet_list li a:hover, .query .tweet_list li a:hover { text-decoration:underline; }
+.tweet .tweet_list .tweet_first, .query .tweet_list .tweet_first { -moz-border-radius: 12px 12px 0 0; -webkit-border-radius: 12px 12px 0 0; -border-radius: 12px 12px 0 0; background: #605B5B; color: #ffffff; padding:6px 10px; height: auto; letter-spacing:0.25em; font-size:0.65em; text-transform:uppercase; border:0px; }
+.tweet .tweet_list .tweet_even, .query .tweet_list .tweet_even { background:#ffffff url(../images/layout/docs_even_bg.png) top left repeat-x; }
+.tweet .tweet_list .tweet_odd, .query .tweet_list .tweet_odd { background:#e5e5e5 url(../images/layout/docs_odd_bg.png) top left repeat-x; }
+.tweet .tweet_list .tweet_last, .query .tweet_list .tweet_last { -moz-border-radius: 0 0 12px 12px; -webkit-border-radius: 0 0 12px 12px; -border-radius: 0 0 12px 12px; }
+.tweet .tweet_list .tweet_avatar, .query .tweet_list .tweet_avatar { padding-right: .5em; }
+.tweet .tweet_list .tweet_avatar img, .query .tweet_list .tweet_avatar img { vertical-align: middle; text-align: center; }
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
+html { font-family:"Myriad Web", Myriad, Arial, sans-serif; }
+#wrap { width:70%; margin:80px auto; margin-bottom:8px; min-width:940px; 
+background:#f5f5f5 url(http://logd.tw.rpi.edu/files/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; 
+-moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; 
+-moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; 
+-moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
+#wrap-padding { padding:40px 20px; padding-bottom:50px; }
+div.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; padding-right:34px; background:url(http://logd.tw.rpi.edu/files/h1block.png) 
+top left no-repeat; font-size:2.2em; font-weight:600; color:#333; }
+div.hr_dl { background:url(http://logd.tw.rpi.edu/files/hr_dl.png) top left repeat-x; height:2px; }
+div.flush { margin-left:-20px; margin-right:-20px; }
+#chart_div{  font-weight:normal; font-size:0.45em; }
+
